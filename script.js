@@ -31,7 +31,7 @@ async function readKeyboard() {
 }
 
 
-const path = "e:/restore/zre/vid";
+const path = "d:/path/to/photos";
 
 let filesBySize = {};
 recursive(path, ['tor', '*.txt', '*.jpg'], async function (err, files) {
