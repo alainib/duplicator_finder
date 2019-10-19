@@ -31,6 +31,10 @@ async function readKeyboard() {
 }
 
 
+<<<<<<< HEAD
+=======
+const path = "d:/path/to/photos";
+>>>>>>> 1004f5efc17f452ebecb91fe2f43329cc190f87a
 
 const path = "D:/restore/files/data";
 
