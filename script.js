@@ -31,8 +31,10 @@ async function readKeyboard() {
 }
 
 
-const path = "e:/restore/zre/vid";
 
+const path = "D:/restore/files/data";
+
+ 
 let filesBySize = {};
 recursive(path, ['tor', '*.txt', '*.jpg'], async function (err, files) {
 	
@@ -85,7 +87,7 @@ recursive(path, ['tor', '*.txt', '*.jpg'], async function (err, files) {
   }
 
 
-  console.log("end ")
+  console.log("end ",files.length)
 
 
 
