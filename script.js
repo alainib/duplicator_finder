@@ -24,23 +24,19 @@ function getFilesizeInBytes(filename) {
 
 // lit depuis le clavier 
 async function readKeyboard() {
-  console.log('keep which one ?');
+  
   return readlineAsync().then(line => {
     return line;
   })
 }
 
+ 
 
-<<<<<<< HEAD
-=======
-const path = "d:/path/to/photos";
->>>>>>> 1004f5efc17f452ebecb91fe2f43329cc190f87a
-
-const path = "D:/restore/files/data";
+const path = "D:/BACKUP/files/";
 
  
 let filesBySize = {};
-recursive(path, ['tor', '*.txt', '*.jpg'], async function (err, files) {
+recursive(path, ['tor', '*.txt'], async function (err, files) {
 	
  if(err){
 	console.error(err);
@@ -66,32 +62,46 @@ recursive(path, ['tor', '*.txt', '*.jpg'], async function (err, files) {
   
  
   console.log(duplicates.length + " duplicates");console.log("");
+  if(duplicates.length>0){
   
-  // pour les fichiers de meme taille on ne garde que un seul 
-  for (var c in filesBySize) {
-    if (filesBySize[c].length > 1) {
+  
+	  // auto keep only one duplicate 
+	  console.log('auto keep only one duplicate ? type [yes] or any');
+	  let autoDelete = await readKeyboard() ==="yes";
+	  
+	 
+	  // pour les fichiers de meme taille on ne garde que un seul 
+	  for (var c in filesBySize) {
+		if (filesBySize[c].length > 1) {
+			if(!autoDelete){
+			  console.log("");console.log("");
 
-      console.log("");console.log("");
+			  for (var i in filesBySize[c]) {
+				console.log(i + " : " + filesBySize[c][i]);
+			  }
+			  console.log('keep which one ?');
+			  let keepMe = await readKeyboard();
 
-      for (var i in filesBySize[c]) {
-        console.log(i + " : " + filesBySize[c][i]);
-      }
-      let keepMe = await readKeyboard();
+			  if (keepMe != "") {
+				// on efface tous les autres doublons sauf celui choisi
+				for (var i in filesBySize[c]) {
+				  if (i != keepMe) {
+					deleteFile(filesBySize[c][i])
+				  }
+				}
 
-      if (keepMe != "") {
-        // on efface tous les autres doublons sauf celui choisi
-        for (var i in filesBySize[c]) {
-          if (i != keepMe) {
-            deleteFile(filesBySize[c][i])
-          }
-        }
+			  }
+			}else{
+			  
+			  for (var j=1;j<filesBySize[c].length;j++) {
+				 deleteFile(filesBySize[c][j])
+			  }			
+			}
+		}
+	  }
+	}
 
-      }
-    }
-  }
-
-
-  console.log("end ",files.length)
+  console.log("end; files readed : ",files.length)
 
 
 
