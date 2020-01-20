@@ -58,8 +58,7 @@ async function readKeyboard() {
   });
 }
 
-// const path = "C:/Users/fixe/Desktop/à trier";
-const path = "G:/louise/a trier vite/natasha/Orthophonie/MATERIEL";
+const path = "D:/BACKUP/files/data";
 
 (async () => {
   let mode = 0;
